@@ -1,0 +1,21 @@
+---
+#become:true
+
+
+-hosts: jenkins_server #52.66.200.232
+
+tasks: 
+ -name: update package manger 
+  become: true
+  apt:
+   update_cache: yes
+
+ -name: install java on jenkins_server
+  become : yes
+  apt:
+   name: "{{item}}"
+   state: present
+  with_items:
+   openjdk-8-jdk 
+   
+
